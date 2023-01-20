@@ -23,27 +23,30 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
   }
 
+
+// This function will take the input and check if it present in the serverVerbs array 
 var httpRequest =   function(httpVerb ,path){
     for (let i = 0; i < serverVerbs.length; i++){
-        if(serverVerbs[i]==httpVerb && serverPaths[i]==path ){                        
+        if(serverVerbs[i]==httpVerb && serverPaths[i]==path ){ 
+            // if it matches the index in the ServerPath then print the corresponding output                       
             return "200: " +serverResponses[i]
         }        
      }
+     // if it does not matches then just output the error message with parameters passed
      return "404: Unable to process "+httpVerb+" request for " +path
         
  } 
 
 
 
-function automateTests(){
+var automateTests   =   function (){
    
     var testVerbs = [ "GET", "POST"];
     var testPaths = [ "/", "/about", "/contact","/login", "/panel","/logout","/randompath1","/randompath2"];
     
-    function randomRequest (){
+   var randomRequest    =  function  (){
         randVerb=getRandomInt(0,1)
         randPath=getRandomInt(0,7)
-    
         console.log(httpRequest(testVerbs[randVerb],testPaths[randPath]))
     }
     
